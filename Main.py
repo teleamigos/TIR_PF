@@ -2,6 +2,14 @@
 ----------------------------------Main------------------------------------------
 --------------------------------------------------------------------------------
 1.- Init variables.
+2.- Send Hello :
+    * Get topology infomation.
+    * Information is packed to be sent through broadcast.
+3.- Receive Hello :
+    * Information is unpacked.
+    * Get Topology from neighbos.
+    * Get neighbors.
+4.- Compute MPR.
 """
 from Packed import*
 import time

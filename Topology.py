@@ -11,3 +11,6 @@ class Topology:
         self.Topology={}
         self.MyMPR=''
         self.MPRs={}
+
+    def MPR(self):
+        pass
