@@ -10,8 +10,8 @@ from Message import*
 from Topology import*
 
 class Packed(Hello,MPRmsj,Message,Topology):
-    def __init__(self,MyMacAdd):
-        self.myMACadd=b'\x94\x53\x30\x44\xca\x7f'
+    def __init__(self,MyMacAdd,ID):
+        self.myMACadd=MyMacAdd
         self.broadcast=b'\xff\xff\xff\xff\xff\xff'
         self.protocol=b'\x08\x01'
         self.payload=''
@@ -20,11 +20,11 @@ class Packed(Hello,MPRmsj,Message,Topology):
         'MPR_message':'1',
         'Message':'2'
         }
-        self.tp=Topology()
+        self.tp=Topology(ID)
         self.msj_out=''
-        self.message_Hello=Hello('0')
-        self.messgae_MPR=MPRmsj('0')
-        self.message=Message('0')
+        self.message_Hello=Hello(ID)
+        self.messgae_MPR=MPRmsj(ID)
+        self.message=Message(ID)
 
     def Pack(self,type,IDdst):
         self.msj_out=self.broadcast+self.myMACadd+self.protocol
@@ -37,4 +37,10 @@ class Packed(Hello,MPRmsj,Message,Topology):
         else:
             print('Error, invalid type of message...')
         self.msj_out+=self.payload
-        print(self.msj_out)
+        return self.msj_out
+
+    def Unpack(self,msj):
+        payload=msj[14:]
+        type=payload[0:1].decode('utf-8')
+        if type==self.Type_message['Hello']:
+            self.message_Hello.Hello_unpack(payload,self.tp)

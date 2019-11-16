@@ -5,8 +5,8 @@
 -----------------------------------------------------------------------------"""
 
 class Topology:
-    def __init__(self):
-        self.MyID='0'
+    def __init__(self,ID):
+        self.MyID=ID
         self.Neighbors=[]
         self.Topology={}
         self.MyMPR=''
