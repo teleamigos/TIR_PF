@@ -16,4 +16,4 @@ class Packed(Hello,MPRmsj,Message):
         'B':b''
         }
         self.protocol=b'\x08\x01'
-        self.payload=''
+        self.payload=b'0000'
