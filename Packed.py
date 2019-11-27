@@ -23,7 +23,7 @@ class Packed(Hello,MPRmsj,Message,Topology):
         self.tp=Topology(ID)
         self.msj_out=''
         self.message_Hello=Hello(ID)
-        self.messgae_MPR=MPRmsj(ID)
+        self.message_MPR=MPRmsj(ID)
         self.message=Message(ID)
 
     def Pack(self,type,IDdst):
