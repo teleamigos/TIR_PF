@@ -7,7 +7,8 @@
 3.- Hello_unpack : Unpack and change topology information.
 -----------------------------------------------------------------------------"""
 from struct import*
-import zlib
+#import zlib
+import binascii
 #from Topology import*
 
 class Hello():
@@ -30,8 +31,10 @@ class Hello():
         self.msj_out+=pack('!H',self.Length_nei)
         for n in self.NeighborList:
             self.msj_out+=n.encode('utf-8')
-        self.crc=zlib.crc32(self.msj_out)
+        #self.crc=zlib.crc32(self.msj_out)
+        self.crc=binascii.crc32(self.msj_out)
         self.msj_out+=pack('!I',self.crc)
+
         return self.msj_out
 
 
@@ -42,11 +45,13 @@ class Hello():
         new_nei=msj_Hello[4:5].decode('utf-8')
         if new_nei not in self.NeighborList:
             self.NeighborList.append(new_nei)
-            Tp.Neighbors=self.NeighborList
-            len_nei=unpack('!H',msj_Hello[5:7])[0]
-            nei_list=msj_Hello[7:7+len_nei]
-            for i in range(0,len_nei):
-                n=nei_list[i:i+1]
-                n=n.decode('utf-8')
-                list.append(n)
-            Tp.Topology[new_nei]=list
+        Tp.Neighbors=self.NeighborList
+        len_nei=unpack('!H',msj_Hello[5:7])[0]
+        nei_list=msj_Hello[7:7+len_nei]
+        print(nei_list)
+        for i in range(0,len_nei):
+            n=nei_list[i:i+1]
+            n=n.decode('utf-8')
+            list.append(n)
+        Tp.Topology[new_nei]=list
+        print(Tp.Topology)

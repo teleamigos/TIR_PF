@@ -6,7 +6,8 @@
 3.- MPRmsj_unpack.
 -----------------------------------------------------------------------------"""
 from struct import*
-import zlib
+import binascii
+#import zlib
 
 class MPRmsj:
     def __init__(self,ID):
@@ -25,8 +26,10 @@ class MPRmsj:
         self.msj_out=self.Type.encode('utf-8')+self.dstID.encode('utf-8')
         self.msj_out+=pack('!H',self.length_message)+self.MyID.encode('utf-8')
         self.msj_out+=self.MyMPR.encode('utf-8')
-        self.crc=zlib.crc32(self.msj_out)
-        self.msj_out+=self.crc
+        #self.crc=zlib.crc32(self.msj_out)
+        self.crc=binascii.crc32(self.msj_out)
+        self.msj_out+=pack('!I',self.crc)
+        print(msj_out)
         return self.msj_out
 
     def MPRmsj_unpack(self,msj_MPR,Tp):
