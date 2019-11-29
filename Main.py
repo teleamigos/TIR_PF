@@ -10,7 +10,14 @@
     * Get Topology from neighbos.
     * Get neighbors.
 4.- Compute MPR.
-"""
+5.- Send MPR message :
+    * The list of MPRs is sent through broadcast.
+6.- Receive MPR message :
+    *The message is unpacked
+    *Get MPR list
+    *If My node is in  MPR list, My node is MPR.
+7.- Send Temperature message:
+-----------------------------------------------------------------------------"""
 from Packed import*
 import time
 from threading import Thread
@@ -30,16 +37,12 @@ while ((tiempo2-tiempo)<5):
     Thread1.start()
     Thread1.join()
     msj=s.recv(1024)
-    print(msj)
     if not msj:
-        print("Not received...")
+        print("Not Hello received...")
         break
     pack.Unpack(msj)
     tiempo2 = time.time()
-
-pack.tp.MyMPR=['3','0']
-out=pack.Pack('1','b')
-print(out)
+pack.tp.MPR()#Compute MPR
 while True:
     out=pack.Pack('1','b')
     Thread1=Thread(target=send,args=(out,s))
