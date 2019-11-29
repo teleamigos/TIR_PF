@@ -10,3 +10,5 @@ Proyecto final
 # Version 1.0
 1.- A message Hello is sent on broadcast
 2.- The message Hello that was received is used to update the topology.
+# Version 1.1
+1.- Compute MPRs
