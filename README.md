@@ -12,3 +12,6 @@ Proyecto final
 2.- The message Hello that was received is used to update the topology.
 # Version 1.1
 1.- Compute MPRs
+# Version 1.2
+1.- Message Hello is completed
+2.- Changes on pack message Hello
