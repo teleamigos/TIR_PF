@@ -1,7 +1,10 @@
 """-----------------------------------------------------------------------------
 ----------------------------------Class Topology--------------------------------
 --------------------------------------------------------------------------------
-1.- Init
+1.- Init:
+    * Define class variables as MyId, Topology, MyMPR, etc...
+2.- MPR :
+    * Compute a list of MPRs from a Topology given.
 -----------------------------------------------------------------------------"""
 import time
 class Topology:
@@ -40,4 +43,3 @@ class Topology:
                             self.MyMPR.append(i)
                             aux = 1
         aux = 0
-        print(self.MyMPR)
