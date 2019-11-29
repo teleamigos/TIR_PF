@@ -15,18 +15,15 @@ class Hello():
     def __init__(self,ID):
         self.MyID=ID
         self.Type='0'
-        self.length_message=7
-        self.dstID=''
         self.Length_nei=0
         self.NeighborList=[]
         self.crc=0
         self.msj_out=b''
 
-    def Hello_pack(self,IDdst,tp):
-        self.dstID=IDdst
+    def Hello_pack(self,tp):
         self.NeighborList=tp.Neighbors
-        self.msj_out=self.Type.encode('utf-8')+self.dstID.encode('utf-8')
-        self.msj_out+=pack('!H',self.length_message)+self.MyID.encode('utf-8')
+        self.msj_out=self.Type.encode('utf-8')
+        self.msj_out+=self.MyID.encode('utf-8')
         self.Length_nei=len(self.NeighborList)
         self.msj_out+=pack('!H',self.Length_nei)
         for n in self.NeighborList:
@@ -39,15 +36,14 @@ class Hello():
 
 
     def Hello_unpack(self,msj_Hello,Tp):
-        src=msj_Hello[1:2].decode('utf-8')
         len_msj=len(msj_Hello)
         list=[]
-        new_nei=msj_Hello[4:5].decode('utf-8')
+        new_nei=msj_Hello[1:2].decode('utf-8')
         if new_nei not in self.NeighborList:
             self.NeighborList.append(new_nei)
         Tp.Neighbors=self.NeighborList
-        len_nei=unpack('!H',msj_Hello[5:7])[0]
-        nei_list=msj_Hello[7:7+len_nei]
+        len_nei=unpack('!H',msj_Hello[2:4])[0]
+        nei_list=msj_Hello[4:4+len_nei]
         print(nei_list)
         for i in range(0,len_nei):
             n=nei_list[i:i+1]

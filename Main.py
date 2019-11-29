@@ -37,5 +37,6 @@ while ((tiempo2-tiempo)<5):
     pack.Unpack(msj)
     tiempo2 = time.time()
 
-pack.tp.MyMPR='3'
+pack.tp.MyMPR=['3','0']
 out=pack.Pack('1','b')
+print(out)

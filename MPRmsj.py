@@ -13,26 +13,32 @@ class MPRmsj:
     def __init__(self,ID):
         self.MyID=ID
         self.Type='1'
-        self.length_message=10
-        self.dstID=''
-        self. MyMPR=''
+        self.MyMPR=[]
         self.crc=0
         self.msj_out=b''
 
-    def MPRmsj_pack(self,IDdst,tp):
+    def MPRmsj_pack(self,tp):
         self.MyMPR=tp.MyMPR
-        self.dstID=IDdst
-        self.NeighborList=tp.Neighbors
-        self.msj_out=self.Type.encode('utf-8')+self.dstID.encode('utf-8')
-        self.msj_out+=pack('!H',self.length_message)+self.MyID.encode('utf-8')
-        self.msj_out+=self.MyMPR.encode('utf-8')
+        self.msj_out=self.Type.encode('utf-8')
+        self.msj_out+=self.MyID.encode('utf-8')
+        l=len(self.MyMPR)
+        self.msj_out+=pack('!H',l)
+        for n in self.MyMPR:
+            self.msj_out+=n.encode('utf-8')
         #self.crc=zlib.crc32(self.msj_out)
         self.crc=binascii.crc32(self.msj_out)
         self.msj_out+=pack('!I',self.crc)
-        print(msj_out)
+        print(self.msj_out)
         return self.msj_out
 
     def MPRmsj_unpack(self,msj_MPR,Tp):
-        IDsrc=msj_MPR[4:5].decode('utf-8')
-        IDmpr=msj_MPR[5:6].decode('utf-8')
-        Tp.MPRs[IDsrc]=IDmpr
+        lista=[]
+        num_MPR=unpack('!H',msj_MPR[2:4])[0]
+        MPRs=msj_MPR[4:4+num_MPR]
+        for i in range(o,num_MPR):
+            m=MPRs[i:i+1]
+            m=m.decode('utf-8')
+            lista.append(m)
+        if Tp.MyID in lista:
+            Tp.SOYMPR=1
+            print("Felicidades eres MPR HDP")
