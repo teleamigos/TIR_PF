@@ -42,4 +42,3 @@ class MPRmsj:
             lista.append(m)
         if Tp.MyID in lista:
             Tp.SOYMPR=1
-            print("Felicidades eres MPR HDP")
