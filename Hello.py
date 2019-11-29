@@ -2,9 +2,14 @@
 ----------------------------------class Hello-----------------------------------
 --------------------------------------------------------------------------------
 1.- Init function: default parameters, put yourself ID
-2.- Hello_pack: Pack infor for Hello, put IDdst and ID. Returns a package of the
-    info.
-3.- Hello_unpack : Unpack and change topology information.
+2.- Hello_pack:
+    * Type message : 1 byte
+    * ID source : 1 byte
+    * Length of the neighbor list : 2 bytes
+    * List of neighbors : Variable size
+    * CRC : 4 bytes
+3.- Hello_unpack :
+    * Unpack and change topology information
 -----------------------------------------------------------------------------"""
 from struct import*
 #import zlib

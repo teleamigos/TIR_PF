@@ -1,7 +1,14 @@
 """-----------------------------------------------------------------------------
 ----------------------------------class packed----------------------------------
 --------------------------------------------------------------------------------
-1.- Init function.
+1.- Init function
+2.- Pack :
+    * MAC address destination : 6 bytes
+    * MAC address source : 6 bytes
+    * Payload : It depends on the message type, either Hello (0), MPR (1) or
+                Temperature (2).
+3.- Unpack :
+    * This function unpack the message received depending its type.
 -----------------------------------------------------------------------------"""
 from struct import*
 from Hello import*

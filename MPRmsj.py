@@ -2,9 +2,14 @@
 ----------------------------------class MPRmsj----------------------------------
 --------------------------------------------------------------------------------
 1.- Init function.
-2.- MPRmsj_pack.
+2.- MPRmsj_pack :
+    * Type message : 1 byte
+    * ID source : 1 byte
+    * Lenght of the MPRs list : 2 bytes
+    * List of MPRs : varible size
+    * CRC : 4 bytes
 3.- MPRmsj_unpack :
-    *
+    * If my node is in the list of MPR, My node will be recognised as MPR. 
 -----------------------------------------------------------------------------"""
 from struct import*
 import binascii

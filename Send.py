@@ -7,4 +7,3 @@ import time
 
 def send(msj,s):
     s.sendall(msj)
-    #print("Message sent...")
