@@ -15,3 +15,5 @@ Proyecto final
 # Version 1.2
 1.- Message Hello is completed
 2.- Changes on pack message Hello
+3.- It can send and receive a MPR message.
+4.- Documentation update to each file.

@@ -43,3 +43,13 @@ while ((tiempo2-tiempo)<5):
     pack.Unpack(msj)
     tiempo2 = time.time()
 pack.tp.MPR()#Compute MPR
+while True:
+    out=pack.Pack('1','b')
+    Thread1=Thread(target=send,args=(out,s))
+    Thread1.start()
+    Thread1.join()
+    msj=s.recv(1024)
+    if not msj:
+        print('Not MPR message received')
+        break
+    pack.Unpack(msj)

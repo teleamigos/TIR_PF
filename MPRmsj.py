@@ -3,7 +3,8 @@
 --------------------------------------------------------------------------------
 1.- Init function.
 2.- MPRmsj_pack.
-3.- MPRmsj_unpack.
+3.- MPRmsj_unpack :
+    *
 -----------------------------------------------------------------------------"""
 from struct import*
 import binascii
@@ -41,4 +42,3 @@ class MPRmsj:
             lista.append(m)
         if Tp.MyID in lista:
             Tp.SOYMPR=1
-            print("Felicidades eres MPR HDP")
