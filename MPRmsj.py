@@ -9,7 +9,7 @@
     * List of MPRs : varible size
     * CRC : 4 bytes
 3.- MPRmsj_unpack :
-    * If my node is in the list of MPR, My node will be recognised as MPR. 
+    * If my node is in the list of MPR, My node will be recognised as MPR.
 -----------------------------------------------------------------------------"""
 from struct import*
 import binascii
@@ -34,16 +34,17 @@ class MPRmsj:
         #self.crc=zlib.crc32(self.msj_out)
         self.crc=binascii.crc32(self.msj_out)
         self.msj_out+=pack('!I',self.crc)
-        print(self.msj_out)
         return self.msj_out
 
     def MPRmsj_unpack(self,msj_MPR,Tp):
         lista=[]
         num_MPR=unpack('!H',msj_MPR[2:4])[0]
         MPRs=msj_MPR[4:4+num_MPR]
-        for i in range(o,num_MPR):
+        print(MPRs)
+        for i in range(0,num_MPR):
             m=MPRs[i:i+1]
             m=m.decode('utf-8')
             lista.append(m)
+        print(lista)
         if Tp.MyID in lista:
             Tp.SOYMPR=1

@@ -49,10 +49,8 @@ class Hello():
         Tp.Neighbors=self.NeighborList
         len_nei=unpack('!H',msj_Hello[2:4])[0]
         nei_list=msj_Hello[4:4+len_nei]
-        print(nei_list)
         for i in range(0,len_nei):
             n=nei_list[i:i+1]
             n=n.decode('utf-8')
             list.append(n)
         Tp.Topology[new_nei]=list
-        print(Tp.Topology)
