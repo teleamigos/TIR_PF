@@ -34,8 +34,9 @@ class Packed(Hello,MPRmsj,Message,Topology):
         self.message=Message(ID)
         self.temperature=0
 
-    def Pack(self,type,IDdst):
+    def Pack(self,type,IDdst,**temp):
         self.msj_out=self.broadcast+self.myMACadd+self.protocol
+        self.temperature=temp
         if type==self.Type_message['Hello']:
             self.payload=self.message_Hello.Hello_pack(self.tp)
         elif type==self.Type_message['MPR_message']:
@@ -49,7 +50,6 @@ class Packed(Hello,MPRmsj,Message,Topology):
 
     def Unpack(self,msj):
         payload=msj[14:]
-        print(payload)
         type=payload[0:1].decode('utf-8')
         if type==self.Type_message['Hello']:
             self.message_Hello.Hello_unpack(payload,self.tp)

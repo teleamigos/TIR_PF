@@ -26,7 +26,8 @@ class Topology:
                 except:
                     self.around.append(j)
         self.around.sort()
-        self.around.remove(self.MyID)
+        if self.MyID in self.around:
+            self.around.remove(self.MyID)
         for i in nei:
             try:
                 self.around.remove(i)
